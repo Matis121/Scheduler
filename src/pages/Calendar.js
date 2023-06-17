@@ -1,22 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Sidebar from '../components/Sidebar';
-import { useContext } from 'react';
-import ClientsContext from '../context/ClientsContext';
-import ServicesContext from '../context/ServicesContext';
 
 const Calendar = () => {
-
-  const { clients } = useContext(ClientsContext);
-  const { services } = useContext(ServicesContext);
-  console.log(clients);
-
-  const [selectedValue, setSelectedValue] = useState();
-  console.log(selectedValue);
 
   return (
     <div className='flex'>
       <Sidebar />
-      <div className='flex flex-col'>
+      {/* <div className='flex flex-col'>
         <div className='flex flex-col mb-8 p-4'>Info o klientach:
           {clients.map((client) => (
             <p key={client.id}><strong>{client.firstName} {client.surName}</strong> tel: {client.phoneNumber}</p>
@@ -34,7 +24,7 @@ const Calendar = () => {
             <p key={service.id}><strong>{service.serviceName}</strong> - {service.servicePrice}zł ({service.serviceTime} minut)</p>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
