@@ -1,7 +1,12 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar';
+import { useClientStore } from "../stores/store";
+
 
 const Home = () => {
+  const clients = useClientStore((state) => state.clients);
+  console.log(clients);
+
   return (
    <>
    <section className='flex'>

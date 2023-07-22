@@ -5,7 +5,7 @@ const Sidebar = () => {
 
   return (
     <>
-        <section className='flex flex-col bg-slate-700 h-screen w-fit'>
+        <section className='flex flex-col bg-slate-700 h-screen w-fit z-50'>
             <div className='py-8 px-4 flex items-center justify-center text-white'>
                 <Link to="/" className='hover:cursor-pointer'>Home</Link>
             </div>
