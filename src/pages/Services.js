@@ -19,18 +19,59 @@ const Services = () => {
         <Sidebar />
         <div className='flex flex-col w-screen items-center justify-center'>
         <AddNewServices showAddServiceBox={showAddServiceBox} setShowAddServiceBox={setShowAddServiceBox} />
-          <div className='h-full w-full flex flex-col justify-start items-start bg-slate-100'>
-            <div className='flex items-center justify-center w-full border-2'>
-              <p className='p-4 font-bold text-2xl text-center'>Usługi</p>
-              {services.length > 0 ? <button className='bg-slate-300 p-2 rounded-xl absolute right-20' onClick={() => setShowAddServiceBox(!showAddServiceBox)}>Dodaj usługę</button> : null}
+          <div className='h-full w-full flex flex-col justify-start items-start bg-gray-50'>
+            <div className='flex items-center justify-center w-full border-2 py-4'>
+              <p className='p-4 font-bold text-2xl text-center uppercase'></p>
+              {services.length > 0 ? <button className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 absolute right-20' onClick={() => setShowAddServiceBox(!showAddServiceBox)}>Add new service</button> : null}
             </div>
-            {services.length === 0 ? <span className='flex flex-col gap-8 self-center mt-48 p-12 bg-slate-200 rounded-xl'>Dodaj pierwszą usługe<button className='bg-slate-300 p-2 rounded-xl' onClick={() => setShowAddServiceBox(!showAddServiceBox)}>Dodaj klienta</button></span> : <div>
-            {services.map(service => <div className='p-4'><p key={service.id} >{service.serviceName} {service.servicePrice} {service.serviceTime}</p>
-            <button className='border py-2 px-4 rounded-md' onClick={() => handleDeleteService(service.id)}>Usuń</button></div>)}
+            {services.length === 0 ? <span className='flex flex-col gap-8 self-center mt-48 p-12 rounded-xl'>You dont have any services yet<button className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800' onClick={() => setShowAddServiceBox(!showAddServiceBox)}>Add service</button></span> :             
+            <div class="relative overflow-x-auto shadow-md w-full">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                LP
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Service name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Duration
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Price
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {services.map(service => 
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td class="px-6 py-4">
+                            {service.id + 1}
+                            </td>
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {service.serviceName}
+                            </th>
+                            <td class="px-6 py-4">
+                            {service.serviceTime} min
+                            </td>
+                            <td class="px-6 py-4">
+                            {service.servicePrice} zł
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => handleDeleteService(service.id)}>Delete</a>
+                            </td>
+                        </tr>
+                        )}
+                    </tbody>
+                </table>
             </div>}
           </div>
         </div>
-      </section>
+    </section>
     </>
   )
 }
