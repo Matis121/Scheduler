@@ -55,6 +55,8 @@ const Calendar = () => {
     )
   }
 
+  console.log(allEvents);
+
   return (
     <div className='flex'>
       <Sidebar/>
@@ -74,7 +76,6 @@ const Calendar = () => {
           selectable={true}
           eventContent={eventContent}
           select ={function(start, end){
-            console.log("siema");
             setNewEvent({
               ...newEvent,
               start: start.startStr,
