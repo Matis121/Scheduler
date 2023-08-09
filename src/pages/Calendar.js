@@ -23,12 +23,14 @@ const Calendar = () => {
 
   const events = [
     {
+      id: 1,
       title: "Our first client",
       start: "2023-07-22T08:00:00",
       end: "2023-07-22T10:00:00",
       description: "This is the description for Event 1.",
     },
     {
+      id: 2,
       title: "Our first client",
       start: "2023-07-22T11:00:00",
       end: "2023-07-22T12:00:00",
@@ -37,7 +39,7 @@ const Calendar = () => {
 
   const [showAddNewEvent, setShowAddNewEvent] = useState(false);
   const [allEvents, setAllEvents] = useState(events);
-  const [newEvent, setNewEvent] = useState({title: "", start: "", end: "", description: ""});
+  const [newEvent, setNewEvent] = useState({id: "", title: "", start: "", end: "", description: ""});
 
   const handleAddEvents = () => {
     setAllEvents([...allEvents, newEvent])
@@ -54,6 +56,20 @@ const Calendar = () => {
       </div>
     )
   }
+
+  const handleEventDrop = (eventDropInfo) => {
+    const updatedEvents = allEvents.map((event) => {
+      if (event.id == eventDropInfo.event.id) {
+        return {
+          ...event,
+          start: eventDropInfo.event.start,
+          end: eventDropInfo.event.end,
+        };
+      }
+      return event;
+    });
+    setAllEvents(updatedEvents);
+  };
 
   console.log(allEvents);
 
@@ -75,18 +91,18 @@ const Calendar = () => {
           events={allEvents}
           selectable={true}
           eventContent={eventContent}
-          select ={function(start, end){
+          select ={function(start){
+            console.log("selection");
             setNewEvent({
               ...newEvent,
               start: start.startStr,
               end: start.endStr,
+              id: allEvents.length + 1,
             });
             setShowAddNewEvent(true);
           }}
           editable={true}
-          eventDrop={function(event){
-            console.log(event);
-          }}
+          eventDrop={handleEventDrop}
         />
       </div>
     </div>
