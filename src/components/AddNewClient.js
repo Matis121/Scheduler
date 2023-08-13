@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useClientStore } from "../stores/store";
 
 const AddNewClient = (props) => {
@@ -9,6 +9,9 @@ const AddNewClient = (props) => {
   const surNameRef = useRef();
   const phoneNumberRef = useRef();
   const amountOfClinets = clientStore.length;
+
+  const [client, setClient] = useState({id, firstName, lastName, gender, phoneNumber, mail, birthday, visits})
+
 
 
   const addNewClient = () => {
