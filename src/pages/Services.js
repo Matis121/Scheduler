@@ -47,19 +47,19 @@ const Services = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {services.map(service => 
+                        {services.map((service, idx) => 
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
-                            {service.id + 1}
+                            {idx + 1}
                             </td>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {service.serviceName}
+                            {service.name}
                             </th>
                             <td class="px-6 py-4">
-                            {service.serviceTime} min
+                            {service.duration} min
                             </td>
                             <td class="px-6 py-4">
-                            {service.servicePrice} zł
+                            {service.price} zł
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => handleDeleteService(service.id)}>Delete</a>
