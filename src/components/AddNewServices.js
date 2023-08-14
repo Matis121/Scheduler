@@ -7,6 +7,7 @@ const AddNewServices = (props) => {
   const serviceStore = useServiceStore((state) => state.services);
 
   const {register, handleSubmit, getValues, resetField, formState:{ errors }} = useForm({});
+  const errorValue = "This field is required";
 
   const onSubmit = () => {
     const serviceStructure = {
@@ -29,14 +30,14 @@ const AddNewServices = (props) => {
           <p className='text-lg'>Add your new service</p>
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <label htmlFor="serviceName">Service name:</label>
-          {errors.name && <span>This field is required</span>}
-          <input type="text" {...register("name", {required: true})} id='serviceName' className='border rounded-md p-2 mr-2' />
+          {errors.name && <span className='text-xs mb-2 text-red-500'>{errorValue}</span>}
+          <input type="text" {...register("name", {required: true})} id='serviceName' className={`focus:outline-none border rounded-md p-2 mr-2 ${errors.name ? 'border-red-500' : ''}`} />
           <label htmlFor="servicePrice">Price:</label>
-          {errors.price && <span>This field is required</span>}
-          <input type="number" {...register("price", {required: true})} id='servicePrice' className='border rounded-md p-2 mr-2'/>
+          {errors.price && <span className='text-xs mb-2 text-red-500'>{errorValue}</span>}
+          <input type="number" {...register("price", {required: true})} id='servicePrice' className={`focus:outline-none border rounded-md p-2 mr-2 ${errors.price ? 'border-red-500' : ''}`}/>
           <label htmlFor="serviceDuration">Duration:</label>
-          {errors.duration && <span>This field is required</span>}
-          <input type="number" {...register("duration", {required: true})} id='serviceDuration' className='border rounded-md p-2 mr-2'/>
+          {errors.duration && <span className='text-xs mb-2 text-red-500'>{errorValue}</span>}
+          <input type="number" {...register("duration", {required: true})} id='serviceDuration' className={`focus:outline-none border rounded-md p-2 mr-2 ${errors.duration ? 'border-red-500' : ''}`}/>
           <input value={"Add service"} type='submit' className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" />
           </form>
       </div>

@@ -7,6 +7,7 @@ const AddNewClient = (props) => {
   const clientStore = useClientStore((state) => state.clients);
 
   const {register, handleSubmit, getValues, resetField, formState:{ errors }} = useForm({});
+  const errorValue = "This field is required";
 
   const onSubmit = () => {
     const clientStructure = {
@@ -29,14 +30,14 @@ const AddNewClient = (props) => {
         <p className='text-lg'>Add your new client</p>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <label htmlFor="firstname">First name:</label>
-          {errors.firstName && <span>This field is required</span>}
-          <input type="text" {...register("firstName", {required: true})}  id='firstName' className='border rounded-md p-2 mr-2' />
+          {errors.firstName && <span className='text-xs mb-2 text-red-500'>{errorValue}</span>}
+          <input type="text" {...register("firstName", {required: true})}  id='firstName' className={`focus:outline-none border rounded-md p-2 mr-2 ${errors.firstName ? 'border-red-500' : ''}`} />
           <label htmlFor="lastName">Last name:</label>
-          {errors.lastName && <span>This field is required</span>}
-          <input type="text" {...register("lastName", {required: true})} id='lastName' className='border rounded-md p-2 mr-2'/>
+          {errors.lastName && <span className='text-xs mb-2 text-red-500'>{errorValue}</span>}
+          <input type="text" {...register("lastName", {required: true})} id='lastName' className={`focus:outline-none border rounded-md p-2 mr-2 ${errors.lastName ? 'border-red-500' : ''}`}/>
           <label htmlFor="phoneNumber">Phone number:</label>
-          {errors.phoneNumber && <span>This field is required</span>}
-          <input type="number" {...register("phoneNumber", {required: true})} id='phoneNumber' className='border rounded-md p-2 mr-2'/>
+          {errors.phoneNumber && <span className='text-xs mb-2 text-red-500'>{errorValue}</span>}
+          <input type="number" {...register("phoneNumber", {required: true})} id='phoneNumber' className={`focus:outline-none border rounded-md p-2 mr-2 ${errors.phoneNumber ? 'border-red-500' : ''}`}/>
           <input type='submit' value={"Add client"}  className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mt-4 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" />
         </form>
       </div>
