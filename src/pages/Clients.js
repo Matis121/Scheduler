@@ -48,10 +48,10 @@ const Clients = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {clients.map(client => 
+                        {clients.map((client, idx) => 
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
-                            {client.id + 1}
+                            {idx + 1}
                             </td>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {client.firstName}
@@ -63,6 +63,7 @@ const Clients = () => {
                             {client.phoneNumber}
                             </td>
                             <td class="px-6 py-4 text-right">
+                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4" onClick={() => handleDeleteClient(client.id)}>Edit</a>
                                 <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => handleDeleteClient(client.id)}>Delete</a>
                             </td>
                         </tr>
