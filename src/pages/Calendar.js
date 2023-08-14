@@ -76,7 +76,7 @@ const Calendar = () => {
   return (
     <div className='flex'>
       <Sidebar/>
-      <div class="w-full"> 
+      <div className="w-full"> 
       <AddNewEventToCalendar setShowAddNewEvent={setShowAddNewEvent} showAddNewEvent={showAddNewEvent} setNewEvent={setNewEvent} newEvent={newEvent} handleAddEvents={handleAddEvents}/>   
         <FullCalendar
           plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
